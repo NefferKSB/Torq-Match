@@ -1,0 +1,45 @@
+section {
+  font-family: 'Oswald';
+  margin-top: 116px;
+  color: #EFEDE3;
+  position: inherit;
+}
+section::before {
+  content: "";
+  background-image: url('../../assets/imgs/landing_page_background.jpg');
+  opacity: 0.85;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+.about_container {
+  padding-top: 150px;
+}
+.container {
+  position: sticky;
+  z-index: 2;
+}
+.intro_title {
+  font-size: 80px;
+  margin-bottom: auto;
+}
+.intro_text {
+  font-size: 30px;
+}
+.intro_pic_container {
+  width: 550px;
+  height: 400px;
+  overflow: hidden;
+}
+.intro_pic {
+  background-image: url('../../assets/imgs/rvhj44-anbr-250_waste_facility.jpg');
+  background-size: contain;
+  background-position: initial;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}

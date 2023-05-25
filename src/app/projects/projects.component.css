@@ -1,0 +1,7 @@
+section {
+  margin-top: 200px;
+}
+:host {
+  width: 100vw;
+  height: 100vh;
+}

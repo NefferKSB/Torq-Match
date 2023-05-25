@@ -1,0 +1,97 @@
+section {
+  font-family: 'Oswald';
+  background-color: #EFEDE3;
+  color: #27291C;
+  position: absolute;
+  margin-top: 250px;
+}
+.seperator {
+  position: relative;
+  max-height: 100px;
+}
+.custom-shape-divider-top-1684288185 {
+  position: inherit;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.custom-shape-divider-top-1684288185 svg {
+  position: relative;
+  display: block;
+  width: calc(300% + 1.3px);
+  height: 203px;
+}
+.custom-shape-divider-top-1684288185 .shape-fill {
+  fill: #27291C;
+}
+.custom-shape-divider-bottom-1684976471 {
+  position: inherit;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom-1684976471 svg {
+  position: relative;
+  display: block;
+  width: calc(300% + 1.3px);
+  height: 102px;
+}
+
+.custom-shape-divider-bottom-1684976471 .shape-fill {
+  fill: #27291C;
+}
+.custom-shape-divider-top-1684545012 {
+  position: inherit;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.custom-shape-divider-top-1684545012 svg {
+  position: relative;
+  display: block;
+  width: calc(127% + 1.3px);
+  height: 101px;
+  transform: rotateY(180deg);
+}
+.custom-shape-divider-top-1684545012 .shape-fill {
+  fill: #27291C;
+}
+.container {
+  position: sticky;
+  z-index: 2;
+}
+.advantages_container{
+  margin-bottom: 60px;
+}
+.advantages_title {
+  font-size: 80px;
+  margin-bottom: auto;
+}
+.advantages_text {
+  font-size: 30px;
+}
+.advantages_pic_container {
+  width: 550px;
+  height: 400px;
+  overflow: hidden;
+}
+.advantages_pic {
+  background-image: url('../../assets/imgs/rvhj44-anbr-250_waste_facility.jpg');
+  background-size: contain;
+  background-position: initial;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+.spacer {
+  margin-bottom: 50px;
+}
