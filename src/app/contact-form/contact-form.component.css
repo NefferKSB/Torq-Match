@@ -1,3 +1,37 @@
-section {
-  margin-top: 200px;
+mat-form-field {
+  display: block;
 }
+
+button:focus {
+  outline: none;
+}
+
+form {
+  text-align: center;
+}
+
+.container {
+  margin-bottom: 5em;
+}
+
+.mat-stroked-button {
+  color: #2099d1;
+  border: 1px solid currentColor;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  width: 100px;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+}
+
+.mat-stroked-button:hover {
+  background-color: #20d1c2;
+}
+
+.mat-button-disabled:hover {
+  background-color: transparent;
+}
+
+

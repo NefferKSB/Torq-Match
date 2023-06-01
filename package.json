@@ -15,7 +15,7 @@
     "@angular/common": "~13.0.0",
     "@angular/compiler": "~13.0.0",
     "@angular/core": "~13.0.0",
-    "@angular/forms": "~13.0.0",
+    "@angular/forms": "^13.0.3",
     "@angular/material": "^13.3.9",
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
@@ -46,5 +46,5 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.84.0"
   },
-  "homepage" : "http://nefferksb.github.io/torq-match"
+  "homepage": "http://nefferksb.github.io/torq-match"
 }

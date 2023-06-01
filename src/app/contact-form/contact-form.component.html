@@ -1,4 +1,72 @@
-<section>
-  <h3>Contact</h3>
-  <p></p>
+<section id="contact" (window:resize)="onResize($event)">
+  <div class="container" [style.width]="width">
+    <p class="h1 mb-4 text-center" data-aos="fade-down">Contact me</p>
+    <form
+      data-aos="zoom-in-up"
+      #contactForm="ngForm"
+      (submit)="onSubmit(contactForm)"
+    >
+      <mat-form-field appearance="standard">
+        <mat-label for="fullname">Name</mat-label>
+        <input
+          matInput
+          ngModel
+          #contactName="ngModel"
+          name="contactName"
+          type="text"
+          placeholder="First and Last Name"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label for="Email">Email</mat-label>
+        <input
+          matInput
+          ngModel
+          #email="ngModel"
+          name="email"
+          type="email"
+          placeholder="You email"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label for="Subject">Subject</mat-label>
+        <mat-select
+          [(value)]="selected"
+          matInput
+          ngModel
+          #subject="ngModel"
+          name="subject"
+          required
+        >
+          <mat-option value="Work Opportunity">Work Opportunity</mat-option>
+          <mat-option value="Question">Question</mat-option>
+          <mat-option value="General Remark">General Remark</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label for="message">Message</mat-label>
+        <textarea
+          matInput
+          ngModel
+          #message="ngModel"
+          name="message"
+          required
+        >
+        </textarea>
+      </mat-form-field>
+      <button
+        type="submit"
+        mat-stroked-button
+        color="primary"
+        [disabled]="!contactForm.valid"
+      >
+        Send
+      </button>
+    </form>
+  </div>
 </section>

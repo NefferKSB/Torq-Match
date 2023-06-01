@@ -4,6 +4,7 @@ section {
   color: #27291C;
   position: absolute;
   margin-top: 250px;
+  width: 100%;
 }
 .seperator {
   position: relative;
