@@ -1,5 +1,8 @@
 section {
-  margin-top: 116px;
+  display: block;
+  padding-top: 50px;
+  background-color: #EFEDE3;
+  position: relative;
 }
 mat-form-field {
   display: block;
