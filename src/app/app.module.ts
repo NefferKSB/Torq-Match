@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -15,6 +18,9 @@ import { AdvantagesComponent } from './advantages/advantages.component';
 import { GallaryLightboxComponent } from './gallery-lightbox/gallery-lightbox.component';
 import { FooterComponent } from './footer/footer.component';
 
+export function playerFactory(): any {
+  return import('lottie-web');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +39,9 @@ import { FooterComponent } from './footer/footer.component';
     AngularMaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
     NoopAnimationsModule,
+    LottieModule.forRoot({ player: playerFactory }),
     RouterModule.forRoot([
       {path: 'projects', component: ProjectsComponent},
       {path: 'about', component: AboutComponent},
