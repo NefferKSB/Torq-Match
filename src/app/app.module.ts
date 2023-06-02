@@ -32,14 +32,15 @@ import { FooterComponent } from './footer/footer.component';
     BrowserModule,
     AngularMaterialModule,
     FormsModule,
+    ReactiveFormsModule,
+    NoopAnimationsModule,
     RouterModule.forRoot([
       {path: 'projects', component: ProjectsComponent},
       {path: 'about', component: AboutComponent},
       {path: 'contact-form', component: ContactComponent},
       {path: '', redirectTo: '/about', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
-    ]),
-    NoopAnimationsModule,
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
