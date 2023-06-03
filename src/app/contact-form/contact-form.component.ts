@@ -58,7 +58,7 @@ export class ContactComponent implements OnInit {
 
   setResponsiveAttrs(screenSize: string) {
     if(screenSize === 'lg') {
-      this.width = '50%';
+      this.width = '40%';
     }
     if(screenSize === 'md') {
       this.width = '50%';
