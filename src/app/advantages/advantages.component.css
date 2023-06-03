@@ -6,6 +6,11 @@ section {
   margin-top: 250px;
   width: 100%;
 }
+#animated-gear{
+  right: 60px;
+  position: relative;
+  max-width: 380px;
+}
 .seperator {
   position: relative;
   max-height: 100px;

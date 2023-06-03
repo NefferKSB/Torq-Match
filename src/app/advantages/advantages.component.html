@@ -39,7 +39,12 @@
             <li>Custom applications</li>
           </ul>
         </div>
-        <div class="col-sm" id="lottie-container"></div>
+        <div class="col-sm" id="animated-gear">
+          <ng-lottie
+            [options]="options"
+            (animationCreated)="onAnimate($event)">
+          </ng-lottie>
+        </div>
       </div>
     </div>
   </div>
