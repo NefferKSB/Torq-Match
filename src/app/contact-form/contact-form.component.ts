@@ -2,10 +2,10 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { ResponsiveService } from '../services/responsive-service';
 //import { HttpClient } from "@angular/common/http";
-import { environment } from 'src/environments/environment';
+//import { environment } from 'src/environments/environment';
 import { MailService } from '../services/mail-service';
 
-const BACKEND_URL = environment.apiUrl;
+//const BACKEND_URL = environment.apiUrl;
 
 @Component({
   selector: 'contact-form',
