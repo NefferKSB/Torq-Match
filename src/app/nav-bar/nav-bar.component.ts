@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,11 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  menuOffset: number;
 
-  constructor() { }
+  constructor(private viewportScroller: ViewportScroller) {
+    this.menuOffset = 115;
+  }
 
   ngOnInit(): void {
     window.addEventListener('scroll', this.scroll, true)
+  }
+
+  public scrollToElementId(elementId: string): void {
+    this.viewportScroller.setOffset([0, 70]);
+    this.viewportScroller.scrollToAnchor(elementId);
   }
 
   scroll = (): void => {

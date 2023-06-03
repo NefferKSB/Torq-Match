@@ -8,13 +8,13 @@
       <div fxShow="true" fxHide.lt-md="true">
         <ul>
           <li class="hvr-bounce-to-bottom">
-            <a routerLink="/about" routerLinkActive="active" ariaCurrentWhenActive="page">What we do</a>
+            <a (click)="scrollToElementId('about')">What we do</a>
           </li>
           <li class="hvr-bounce-to-bottom">
-            <a routerLink="/projects" routerLinkActive="active" ariaCurrentWhenActive="page">Projects</a>
+            <a (click)="scrollToElementId('project')">Projects</a>
           </li>
           <li class="hvr-bounce-to-bottom">
-            <a routerLink="/contact-form" routerLinkActive="active" ariaCurrentWhenActive="page">Contact Us</a>
+            <a (click)="scrollToElementId('contact')">Contact Us</a>
           </li>
         </ul>
       </div>
