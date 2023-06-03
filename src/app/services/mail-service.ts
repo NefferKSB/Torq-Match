@@ -2,10 +2,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { environment } from 'src/environments/environment';
+//import { environment } from 'src/environments/environment';
 import { EmailData } from '../models/email-data';
 
-const BACKEND_URL = environment.apiUrl;
+//const BACKEND_URL = environment.apiUrl;
 
 @Injectable({ providedIn: 'root'})
 export class MailService {
