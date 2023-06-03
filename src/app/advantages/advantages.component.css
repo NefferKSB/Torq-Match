@@ -90,7 +90,7 @@ section {
 }
 .advantages_pic {
   background-image: url('../../assets/imgs/rvhj44-anbr-250_waste_facility.jpg');
-  background-size: contain;
+  background-size: cover;
   background-position: initial;
   background-repeat: no-repeat;
   overflow: hidden;
