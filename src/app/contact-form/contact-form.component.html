@@ -27,34 +27,71 @@
           #email="ngModel"
           name="email"
           type="email"
-          placeholder="You email"
+          placeholder="Your email"
           required
         />
       </mat-form-field>
 
       <mat-form-field appearance="standard">
-        <mat-label for="Subject">Subject</mat-label>
-        <mat-select
-          [(value)]="selected"
+        <mat-label for="Nameplate">Full Nameplate Information</mat-label>
+        <input
           matInput
           ngModel
-          #subject="ngModel"
-          name="subject"
+          #nameplate="ngModel"
+          name="nameplate"
+          type="text"
+          placeholder="Nameplate Information"
           required
-        >
-          <mat-option value="Work Opportunity">Work Opportunity</mat-option>
-          <mat-option value="Question">Question</mat-option>
-          <mat-option value="General Remark">General Remark</mat-option>
-        </mat-select>
+        />
       </mat-form-field>
 
       <mat-form-field appearance="standard">
-        <mat-label for="message">Message</mat-label>
+        <mat-label for="Nameplate">Current motor power and speed information</mat-label>
+        <input
+          matInput
+          ngModel
+          #motorInfo="ngModel"
+          name="motorInfo"
+          type="text"
+          placeholder="Motor Information"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label for="Nameplate">Assembly</mat-label>
+        <input
+          matInput
+          ngModel
+          #assembly="ngModel"
+          name="assembly"
+          type="text"
+          placeholder="Assembly"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label for="Nameplate">Application</mat-label>
+        <input
+          matInput
+          ngModel
+          #application="ngModel"
+          name="application"
+          type="text"
+          placeholder="Application"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label for="message">Any additional changes to original installation</mat-label>
         <textarea
           matInput
           ngModel
-          #message="ngModel"
-          name="message"
+          #additionalInfo="ngModel"
+          name="additionalInfo"
+          placeholder="Additional information (v-belts, loads, etc.)"
           required
         >
         </textarea>
