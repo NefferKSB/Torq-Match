@@ -41,7 +41,8 @@ export function playerFactory(): any {
     ReactiveFormsModule,
     CommonModule,
     NoopAnimationsModule,
-    LottieModule.forRoot({ player: playerFactory }),
+    LottieModule.forRoot({ player: playerFactory })
+    /*
     RouterModule.forRoot([
       {path: 'projects', component: ProjectsComponent},
       {path: 'about', component: AboutComponent},
@@ -49,6 +50,7 @@ export function playerFactory(): any {
       {path: '', redirectTo: '/about', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
     ])
+    */
   ],
   providers: [],
   bootstrap: [AppComponent]
