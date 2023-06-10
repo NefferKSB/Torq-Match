@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GallaryLightboxComponent } from '../gallery-lightbox/gallery-lightbox.component';
 
 interface Item {
   imageSrc: string;
@@ -8,7 +7,6 @@ interface Item {
 }
 
 @Component({
-  entryComponents: [GallaryLightboxComponent],
   selector: 'app-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
