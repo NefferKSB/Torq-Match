@@ -72,7 +72,7 @@ export class ContactComponent implements OnInit {
     if(form.invalid) {
       return;
     }
-    this.mailService.sendMail(form.value.contactName, form.value.email, form.value.subject, form.value.message);
+    this.mailService.sendMail(form.value.contactName, form.value.email, form.value.nameplate, form.value.motorInfo, form.value.assembly, form.value.application, form.value.additionalInfo);
     form.reset();
   }
 }
