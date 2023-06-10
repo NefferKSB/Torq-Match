@@ -70,8 +70,10 @@ export class ContactComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if(form.invalid) {
+      alert("not a valid form submission!");
       return;
     }
+    alert("valid form submission!");
     this.mailService.sendMail(form.value.contactName, form.value.email, form.value.nameplate, form.value.motorInfo, form.value.assembly, form.value.application, form.value.additionalInfo);
     form.reset();
   }
