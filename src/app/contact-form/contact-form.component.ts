@@ -1,20 +1,26 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { ResponsiveService } from '../services/responsive-service';
 import { MailService } from '../services/mail-service';
 
 //const BACKEND_URL = environment.apiUrl;
+
+export interface DialogData {
+  animal: 'panda' | 'unicorn' | 'lion';
+}
 @Component({
   selector: 'contact-form',
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.css'],
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatButtonModule]
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatButtonModule, MatDialogModule]
 })
+
 export class ContactComponent implements OnInit {
   contactForm = this.formBuilder.group(
     {
@@ -43,7 +49,8 @@ export class ContactComponent implements OnInit {
   constructor(
     private responsiveService: ResponsiveService,
     private formBuilder: FormBuilder,
-    public mailService: MailService
+    public mailService: MailService,
+    public dialog: MatDialog
   ) {
     this.width = '50%';
     this.selected = '';
@@ -72,11 +79,20 @@ export class ContactComponent implements OnInit {
     }
   }
 
+  openDialog() {
+    this.dialog.open(DialogDataExampleDialog, {
+      data: {
+        animal: 'panda',
+      },
+    });
+  }
+
   onSubmit() {
     if(this.contactForm.invalid) {
       alert("not a valid form submission!");
       return;
     }
+    /*
     alert(`valid form submission!
     ${this.contactForm.value.contactName}
     ${this.contactForm.value.email}
@@ -86,6 +102,7 @@ export class ContactComponent implements OnInit {
     ${this.contactForm.value.application}
     ${this.contactForm.value.additionalInfo}
     `);
+    */
     this.mailService.sendMail(
       this.contactForm.value.contactName ?? "",
       this.contactForm.value.email ?? "",
@@ -93,7 +110,19 @@ export class ContactComponent implements OnInit {
       this.contactForm.value.motorInfo ?? "",
       this.contactForm.value.assembly ?? "",
       this.contactForm.value.application ?? "",
-      this.contactForm.value.additionalInfo ?? "");
+      this.contactForm.value.additionalInfo ?? ""
+    );
+    this.openDialog();
     this.contactForm.reset();
   }
+}
+
+@Component({
+  selector: 'dialog-data',
+  templateUrl: 'dialog-data.html',
+  standalone: true,
+  imports: [MatDialogModule],
+})
+export class DialogDataExampleDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 }
