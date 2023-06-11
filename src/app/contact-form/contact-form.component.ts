@@ -77,7 +77,15 @@ export class ContactComponent implements OnInit {
       alert("not a valid form submission!");
       return;
     }
-    alert("valid form submission! " + this.contactForm.value.assembly);
+    alert(`valid form submission!
+    ${this.contactForm.value.contactName}
+    ${this.contactForm.value.email}
+    ${this.contactForm.value.nameplate}
+    ${this.contactForm.value.motorInfo}
+    ${this.contactForm.value.assembly}
+    ${this.contactForm.value.application}
+    ${this.contactForm.value.additionalInfo}
+    `);
     this.mailService.sendMail(
       this.contactForm.value.contactName ?? "",
       this.contactForm.value.email ?? "",
