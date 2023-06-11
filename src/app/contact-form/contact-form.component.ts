@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -15,7 +16,7 @@ import { MailService } from '../services/mail-service';
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.css'],
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatButtonModule],
 })
 export class ContactComponent implements OnInit {
   contactForm = this.formBuilder.group(
@@ -23,13 +24,14 @@ export class ContactComponent implements OnInit {
       contactName: ['', Validators.required],
       email: [
         '',
-        Validators.compose([Validators.required, Validators.email]),
+        Validators.required
+        //Validators.compose([Validators.required, Validators.email]),
       ],
       nameplate: ['', Validators.required],
       motorInfo: ['', Validators.required],
       assembly: ['', Validators.required],
       application: ['', Validators.required],
-      additionalInfo: ['', Validators.required]
+      additionalInfo: ['']
     }
   );
 
