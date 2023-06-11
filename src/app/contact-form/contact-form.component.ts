@@ -1,5 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { ResponsiveService } from '../services/responsive-service';
 //import { HttpClient } from "@angular/common/http";
 //import { environment } from 'src/environments/environment';
@@ -11,9 +14,25 @@ import { MailService } from '../services/mail-service';
   selector: 'contact-form',
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.css'],
+  standalone: true,
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
 })
 export class ContactComponent implements OnInit {
-  contactForm: FormGroup;
+  contactForm = this.formBuilder.group(
+    {
+      contactName: ['', Validators.required],
+      email: [
+        '',
+        Validators.compose([Validators.required, Validators.email]),
+      ],
+      nameplate: ['', Validators.required],
+      motorInfo: ['', Validators.required],
+      assembly: ['', Validators.required],
+      application: ['', Validators.required],
+      additionalInfo: ['', Validators.required]
+    }
+  );
+
   disabledSubmitButton: boolean = true;
   optionsSelect: Array<any> = [];
   selected: string;
@@ -30,19 +49,11 @@ export class ContactComponent implements OnInit {
     private fb: FormBuilder,
     //private http: HttpClient,
     private responsiveService: ResponsiveService,
+    private formBuilder: FormBuilder,
     public mailService: MailService
   ) {
     this.width = '50%';
     this.selected = '';
-    this.contactForm = fb.group({
-      Fullname: ['', Validators.required],
-      Email: [
-        '',
-        Validators.compose([Validators.required, Validators.email]),
-      ],
-      Subject: ['', Validators.required],
-      Message: ['', Validators.required]
-    });
   }
 
   ngOnInit() {
@@ -68,13 +79,13 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  onSubmit(form: NgForm) {
-    if(form.invalid) {
+  onSubmit() {
+    if(this.contactForm.invalid) {
       alert("not a valid form submission!");
       return;
     }
     alert("valid form submission!");
-    this.mailService.sendMail(form.value.contactName, form.value.email, form.value.nameplate, form.value.motorInfo, form.value.assembly, form.value.application, form.value.additionalInfo);
-    form.reset();
+    //this.mailService.sendMail(this.contactForm.value.contactName, this.contactForm.value.email, this.contactForm.value.nameplate, this.contactForm.value.motorInfo, this.contactForm.value.assembly, this.contactForm.value.application, this.contactForm.value.additionalInfo);
+    this.contactForm.reset();
   }
 }

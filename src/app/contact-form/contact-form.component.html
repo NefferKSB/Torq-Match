@@ -2,95 +2,87 @@
   <div id="contact" class="container" [style.width]="width">
     <p class="h1 mb-4 text-center" data-aos="fade-down">Contact</p>
     <form
-      data-aos="zoom-in-up"
-      #contactForm="ngForm"
-      (submit)="onSubmit(contactForm)"
+      [formGroup]="contactForm"
+      (ngSubmit)="onSubmit()"
     >
-      <mat-form-field appearance="standard">
+      <mat-form-field>
         <mat-label for="fullname">Name</mat-label>
         <input
           matInput
-          ngModel
-          #contactName="ngModel"
           name="contactName"
+          formControlName="contactName"
           type="text"
           placeholder="First and Last Name"
           required
         />
       </mat-form-field>
 
-      <mat-form-field appearance="standard">
+      <mat-form-field>
         <mat-label for="Email">Email</mat-label>
         <input
           matInput
-          ngModel
-          #email="ngModel"
           name="email"
+          formControlName="email"
           type="email"
           placeholder="Your email"
           required
         />
       </mat-form-field>
 
-      <mat-form-field appearance="standard">
+      <mat-form-field>
         <mat-label for="Nameplate">Full Nameplate Information</mat-label>
         <input
           matInput
-          ngModel
-          #nameplate="ngModel"
           name="nameplate"
+          formControlName="nameplate"
           type="text"
           placeholder="Nameplate Information"
           required
         />
       </mat-form-field>
 
-      <mat-form-field appearance="standard">
+      <mat-form-field>
         <mat-label for="MotorInfo">Current motor power and speed information</mat-label>
         <input
           matInput
-          ngModel
-          #motorInfo="ngModel"
           name="motorInfo"
+          formControlName="motorInfo"
           type="text"
           placeholder="Motor Information"
           required
         />
       </mat-form-field>
 
-      <mat-form-field appearance="standard">
+      <mat-form-field>
         <mat-label for="Assembly">Assembly</mat-label>
         <input
           matInput
-          ngModel
-          #assembly="ngModel"
           name="assembly"
+          formControlName="assembly"
           type="text"
           placeholder="Assembly"
           required
         />
       </mat-form-field>
 
-      <mat-form-field appearance="standard">
+      <mat-form-field>
         <mat-label for="Application">Application</mat-label>
         <input
           matInput
-          ngModel
-          #application="ngModel"
           name="application"
+          formControlName="application"
           type="text"
           placeholder="Application"
           required
         />
       </mat-form-field>
 
-      <mat-form-field appearance="standard">
+      <mat-form-field>
         <mat-label for="AdditionalInfo">Any additional changes to original installation</mat-label>
         <textarea
           matInput
-          ngModel
-          #additionalInfo="ngModel"
           name="additionalInfo"
+          formControlName="additionalInfo"
           placeholder="Additional information (v-belts, loads, etc.)"
         >
         </textarea>

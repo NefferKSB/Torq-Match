@@ -26,13 +26,11 @@ export function playerFactory(): any {
     AppComponent,
     NavBarComponent,
     ProjectsComponent,
-    ContactComponent,
     PageNotFoundComponent,
     AboutComponent,
     AdvantagesComponent,
     GallaryLightboxComponent,
-    FooterComponent,
-    ContactComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +38,7 @@ export function playerFactory(): any {
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    ContactComponent,
     NoopAnimationsModule,
     LottieModule.forRoot({ player: playerFactory })
     /*
