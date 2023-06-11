@@ -93,6 +93,7 @@ export class ContactComponent implements OnInit {
       return;
     }
     /*
+    //debug alert
     alert(`valid form submission!
     ${this.contactForm.value.contactName}
     ${this.contactForm.value.email}
