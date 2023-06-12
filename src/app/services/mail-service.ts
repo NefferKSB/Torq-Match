@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { EmailData } from '../models/email-data';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
+const BACKEND_URL = environment.apiUrl;
 
 @Injectable({ providedIn: 'root'})
 export class MailService {
@@ -14,6 +17,6 @@ export class MailService {
     // and return the Observable for the API call
     // Example using HttpClient:
     const emailData: EmailData = {contactName: contactName, email: email, nameplate: nameplate, motorInfo: motorInfo, assembly: assembly, application: application, additionalInfo: additionalInfo};
-    return this.http.post<any>('/api/send-email', emailData);
+    return this.http.post<any>(BACKEND_URL + '/send-email', emailData);
   }
 }

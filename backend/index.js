@@ -2,9 +2,14 @@ require("dotenv").config({path: "../.env"});
 const nodemailer = require("nodemailer");
 const bodyParser = require('body-parser');
 const { google } = require("googleapis");
+const cors = require('cors');
 const OAuth2 = google.auth.OAuth2;
 const express = require('express');
 const app = express();
+const port = 3000;
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Middleware for parsing JSON data
 app.use(bodyParser.json());
@@ -85,4 +90,9 @@ app.post('/api/send-email', (req, res) => {
     let emailTransporter = await createTransporter();
     await emailTransporter.sendMail(mailOptions);
   };
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

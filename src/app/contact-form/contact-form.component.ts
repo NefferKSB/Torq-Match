@@ -8,8 +8,6 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/d
 import { ResponsiveService } from '../services/responsive-service';
 import { MailService } from '../services/mail-service';
 
-//const BACKEND_URL = environment.apiUrl;
-
 export interface DialogData {}
 @Component({
   selector: 'contact-form',
