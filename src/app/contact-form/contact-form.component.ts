@@ -10,9 +10,7 @@ import { MailService } from '../services/mail-service';
 
 //const BACKEND_URL = environment.apiUrl;
 
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
-}
+export interface DialogData {}
 @Component({
   selector: 'contact-form',
   templateUrl: './contact-form.component.html',
@@ -104,7 +102,7 @@ export class ContactComponent implements OnInit {
     ${this.contactForm.value.additionalInfo}
     `);
     */
-    this.mailService.sendMail(
+    this.mailService.sendEmail(
       this.contactForm.value.contactName ?? "",
       this.contactForm.value.email ?? "",
       this.contactForm.value.nameplate ?? "",
@@ -112,9 +110,18 @@ export class ContactComponent implements OnInit {
       this.contactForm.value.assembly ?? "",
       this.contactForm.value.application ?? "",
       this.contactForm.value.additionalInfo ?? ""
-    );
-    this.openDialog();
-    this.contactForm.reset();
+    ).subscribe({
+      next: () => {
+        // Email sent successfully
+        // Reset the form or show a success message
+        this.openDialog();
+        this.contactForm.reset();
+      },
+      error: (error) => {
+        // Handle error
+        console.error('Failed to send email:', error);
+      }
+    });
   }
 }
 

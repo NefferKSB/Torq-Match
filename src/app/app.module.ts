@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
@@ -40,6 +40,7 @@ export function playerFactory(): any {
     CommonModule,
     ContactComponent,
     NoopAnimationsModule,
+    HttpClientModule,
     LottieModule.forRoot({ player: playerFactory })
     /*
     RouterModule.forRoot([
