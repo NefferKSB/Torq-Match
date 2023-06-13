@@ -33,22 +33,6 @@ app.post('/api/send-email', (req, res) => {
     `
   };
 
-  // Send the email
-  sendEmail(mailOptions);
-
-  /*
-  // Send the email
-  transporter.sendMail(mailOptions)
-    .then((info) => {
-      console.log('Email sent:', info.response);
-      res.json({ message: 'Email sent successfully' });
-    })
-    .catch((error) => {
-      console.error('Failed to send email:', error);
-      res.status(500).json({ message: 'Failed to send email' });
-    });
-    */
-
   const createTransporter = async () => {
     const oauth2Client = new OAuth2(
       process.env.CLIENT_ID,
@@ -90,6 +74,9 @@ app.post('/api/send-email', (req, res) => {
     let emailTransporter = await createTransporter();
     await emailTransporter.sendMail(mailOptions);
   };
+
+  // Send the email
+  sendEmail(mailOptions);
 });
 
 // Start the server

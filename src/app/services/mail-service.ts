@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { EmailData } from '../models/email-data';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -8,7 +8,6 @@ const BACKEND_URL = environment.apiUrl;
 
 @Injectable({ providedIn: 'root'})
 export class MailService {
-  private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient) {}
 
