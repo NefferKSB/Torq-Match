@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  piUrl: "/api"
+  apiUrl: "/api"
 };
