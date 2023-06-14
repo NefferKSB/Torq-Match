@@ -19,10 +19,10 @@ app.post('/api/send-email', (req, res) => {
   // Compose the email
   const mailOptions = {
     from: process.env.EMAIL,
-    to: 'kennanrsb@gmail.com',
-    subject: 'New Contact Form Submission',
+    to: 'kennanrsb@gmail.com', //Recipient email address goes here
+    subject: 'Torq-Match Website Contact Form Submission',
     html: `
-      <h3>New Contact Form Submission</h3>
+      <h3>New Inquiry</h3>
       <p><strong>Name:</strong> ${contactName}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Nameplate:</strong> ${nameplate}</p>
@@ -39,8 +39,6 @@ app.post('/api/send-email', (req, res) => {
       process.env.CLIENT_SECRET,
       "https://developers.google.com/oauthplayground"
     );
-
-    //console.log(process.env.CLIENT_ID);
 
     oauth2Client.setCredentials({
       refresh_token: process.env.REFRESH_TOKEN
@@ -70,13 +68,14 @@ app.post('/api/send-email', (req, res) => {
     return transporter;
   };
 
-  const sendEmail = async (mailOptions) => {
+  const sendEmail = async (mailOpt) => {
     let emailTransporter = await createTransporter();
-    await emailTransporter.sendMail(mailOptions);
+    await emailTransporter.sendMail(mailOpt);
   };
 
   // Send the email
   sendEmail(mailOptions);
+  res.send({message: 'Form submitted successfully'});
 });
 
 // Start the server

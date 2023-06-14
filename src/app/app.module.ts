@@ -17,6 +17,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AdvantagesComponent } from './advantages/advantages.component';
 import { GallaryLightboxComponent } from './gallery-lightbox/gallery-lightbox.component';
 import { FooterComponent } from './footer/footer.component';
+import { MatInputModule } from '@angular/material/input';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -40,6 +41,7 @@ export function playerFactory(): any {
     CommonModule,
     ContactComponent,
     NoopAnimationsModule,
+    MatInputModule,
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory })
     /*

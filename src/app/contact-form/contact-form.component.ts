@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { ResponsiveService } from '../services/responsive-service';
 import { MailService } from '../services/mail-service';
+import { CommonModule } from '@angular/common';
 
 export interface DialogData {}
 @Component({
@@ -14,21 +15,11 @@ export interface DialogData {}
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.css'],
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatButtonModule, MatDialogModule]
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatButtonModule, MatDialogModule, CommonModule]
 })
 
 export class ContactComponent implements OnInit {
-  contactForm = this.formBuilder.group(
-    {
-      contactName: ['', Validators.required],
-      email: ['', Validators.required],
-      nameplate: ['', Validators.required],
-      motorInfo: ['', Validators.required],
-      assembly: ['', Validators.required],
-      application: ['', Validators.required],
-      additionalInfo: ['']
-    }
-  );
+  form!: FormGroup; //Add '!' to indicate definite assignment
 
   disabledSubmitButton: boolean = true;
   optionsSelect: Array<any> = [];
@@ -37,7 +28,7 @@ export class ContactComponent implements OnInit {
   screenSize: string = this.responsiveService.screenWidth;
 
   @HostListener('input') oninput() {
-    if (this.contactForm.valid) {
+    if (this.form.valid) {
       this.disabledSubmitButton = false;
     }
   }
@@ -53,6 +44,17 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.form = this.formBuilder.group(
+      {
+        contactName: ['', Validators.required],
+        email: ['', Validators.required, Validators.email],
+        nameplate: ['', Validators.required],
+        motorInfo: ['', Validators.required],
+        assembly: ['', Validators.required],
+        application: ['', Validators.required],
+        additionalInfo: ['']
+      }
+    );
     this.screenSize = this.responsiveService.screenWidth;
     this.setResponsiveAttrs(this.screenSize);
   }
@@ -76,44 +78,41 @@ export class ContactComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(DialogDataExampleDialog, {
-      data: {
-        animal: 'panda',
-      },
-    });
+    this.dialog.open(DialogDataExampleDialog, {});
   }
 
   onSubmit() {
-    if(this.contactForm.invalid) {
+    if(this.form.invalid) {
       alert("not a valid form submission!");
       return;
     }
     /*
     //debug alert
     alert(`valid form submission!
-    ${this.contactForm.value.contactName}
-    ${this.contactForm.value.email}
-    ${this.contactForm.value.nameplate}
-    ${this.contactForm.value.motorInfo}
-    ${this.contactForm.value.assembly}
-    ${this.contactForm.value.application}
-    ${this.contactForm.value.additionalInfo}
+    ${this.form.value.contactName}
+    ${this.form.value.email}
+    ${this.form.value.nameplate}
+    ${this.form.value.motorInfo}
+    ${this.form.value.assembly}
+    ${this.form.value.application}
+    ${this.form.value.additionalInfo}
     `);
     */
+
     this.mailService.sendEmail(
-      this.contactForm.value.contactName ?? "",
-      this.contactForm.value.email ?? "",
-      this.contactForm.value.nameplate ?? "",
-      this.contactForm.value.motorInfo ?? "",
-      this.contactForm.value.assembly ?? "",
-      this.contactForm.value.application ?? "",
-      this.contactForm.value.additionalInfo ?? ""
+      this.form.value.contactName ?? "",
+      this.form.value.email ?? "",
+      this.form.value.nameplate ?? "",
+      this.form.value.motorInfo ?? "",
+      this.form.value.assembly ?? "",
+      this.form.value.application ?? "",
+      this.form.value.additionalInfo ?? ""
     ).subscribe({
       next: () => {
         // Email sent successfully
         // Reset the form or show a success message
         this.openDialog();
-        this.contactForm.reset();
+        this.form.reset();
       },
       error: (error) => {
         // Handle error
