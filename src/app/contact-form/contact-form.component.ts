@@ -50,7 +50,7 @@ export class ContactComponent implements OnInit {
     this.form = this.formBuilder.group(
       {
         contactName: ['', Validators.required],
-        email: ['', Validators.email],
+        email: ['', [Validators.email, Validators.required]],
         nameplate: ['', Validators.required],
         motorInfo: ['', Validators.required],
         assembly: ['', Validators.required],
