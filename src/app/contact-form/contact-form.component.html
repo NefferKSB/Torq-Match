@@ -22,14 +22,11 @@
           matInput
           name="email"
           formControlName="email"
-          type="email"
           placeholder="Your email"
         />
       </mat-form-field>
-      <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
-        <div *ngIf="form.controls['email'].errors?.['email']">
-          Please enter a valid email address.
-        </div>
+      <div *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].pristine">
+        Please enter a valid email address.
       </div>
 
       <mat-form-field>

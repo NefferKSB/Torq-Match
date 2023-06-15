@@ -44,10 +44,13 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.screenSize = this.responsiveService.screenWidth;
+    this.setResponsiveAttrs(this.screenSize);
+
     this.form = this.formBuilder.group(
       {
         contactName: ['', Validators.required],
-        email: ['', Validators.required, Validators.email],
+        email: ['', Validators.email],
         nameplate: ['', Validators.required],
         motorInfo: ['', Validators.required],
         assembly: ['', Validators.required],
@@ -55,8 +58,6 @@ export class ContactComponent implements OnInit {
         additionalInfo: ['']
       }
     );
-    this.screenSize = this.responsiveService.screenWidth;
-    this.setResponsiveAttrs(this.screenSize);
   }
 
   onResize(event: any){
