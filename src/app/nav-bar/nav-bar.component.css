@@ -109,6 +109,10 @@ mat-nav-list a {
   color: #27291C;
 }
 
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.5;
+}
 
 /*CSS for bounce to bottom animation*/
 .hvr-bounce-to-bottom {

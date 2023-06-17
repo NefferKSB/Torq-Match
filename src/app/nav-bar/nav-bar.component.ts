@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
+import { NavbarService } from '../services/navbar.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,13 +9,15 @@ import { ViewportScroller } from '@angular/common';
 })
 export class NavBarComponent implements OnInit {
   menuOffset: number;
+  isLinkDisabled: boolean;
 
-  constructor(private viewportScroller: ViewportScroller) {
+  constructor(private viewportScroller: ViewportScroller, public navbarService: NavbarService) {
     this.menuOffset = 115;
+    this.isLinkDisabled = this.navbarService.isLinkDisabled;
   }
 
   ngOnInit(): void {
-    window.addEventListener('scroll', this.scroll, true)
+    window.addEventListener('scroll', this.scroll, true);
   }
 
   public scrollToElementId(elementId: string): void {

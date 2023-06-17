@@ -6,7 +6,7 @@
       </span>
       <span class="spacer"></span>
       <div fxShow="true" fxHide.lt-md="true">
-        <ul>
+        <ul [ngClass]="{ 'disabled-link': navbarService.isLinkDisabled }">
           <li class="hvr-bounce-to-bottom">
             <a (click)="scrollToElementId('about')">What we do</a>
           </li>

@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger, AnimationEvent } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { NavbarService } from '../services/navbar.service';
 
 interface Item {
   imageSrc: string;
@@ -33,6 +34,8 @@ interface Item {
 export class GallaryLightboxComponent implements OnInit {
   @Input() galleryData: Item[] = [];
   @Input() showCount = false;
+  @ViewChild('galElement', { static: false, read: ElementRef})
+  galElement!: ElementRef;
 
   previewImage = false;
   showMask = false;
@@ -40,14 +43,20 @@ export class GallaryLightboxComponent implements OnInit {
   currentIndex = 0;
   controls = true;
   totalImageCount = 0;
+  isLinkDisabled: boolean;
 
-  constructor() { }
+  constructor(private renderer: Renderer2, public navbarService: NavbarService) {
+    this.isLinkDisabled = this.navbarService.isLinkDisabled;
+  }
 
   ngOnInit(): void {
     this.totalImageCount = this.galleryData.length;
   }
 
   onPreviewImage(index: number): void {
+    this.navbarService.isLinkDisabled = true;
+    this.scrollToTarget();
+    this.renderer.setStyle(document.body, 'overflow', 'hidden');
     this.showMask = true;
     this.previewImage = true;
     this.currentIndex = index;
@@ -61,6 +70,8 @@ export class GallaryLightboxComponent implements OnInit {
   }
 
   onClosePreview() {
+    this.navbarService.isLinkDisabled = false;
+    this.renderer.setStyle(document.body, 'overflow', 'auto');
     this.previewImage = false;
   }
 
@@ -78,5 +89,9 @@ export class GallaryLightboxComponent implements OnInit {
       this.currentIndex = this.galleryData.length - 1;
     }
     this.currentLightboxImage = this.galleryData[this.currentIndex];
+  }
+
+  scrollToTarget() {
+      this.galElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 }
