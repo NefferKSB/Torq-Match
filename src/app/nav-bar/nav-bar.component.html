@@ -18,6 +18,34 @@
           </li>
         </ul>
       </div>
+
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm [disableRipple]="true">
+        <mat-icon>menu</mat-icon>
+      </button>
+
     </mat-toolbar-row>
   </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav position="end" fixedInViewport="true" [fixedTopGap]="menuOffset">
+      <mat-nav-list>
+        <a mat-list-item (click)="scrollToElementId('about')">What we do</a>
+        <a mat-list-item (click)="scrollToElementId('project')">Projects</a>
+        <a mat-list-item (click)="scrollToElementId('contact')">Contact</a>
+        <a mat-list-item (click)="scrollToElementId('about')">
+          <mat-icon>home</mat-icon>Back to top
+        </a>
+        <a (click)="sidenav.toggle()" mat-list-item>
+          <mat-icon>close</mat-icon> Close
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <app-about></app-about>
+      <app-advantages></app-advantages>
+      <app-projects></app-projects>
+      <contact-form></contact-form>
+      <app-footer></app-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

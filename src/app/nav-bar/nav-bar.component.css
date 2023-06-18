@@ -95,12 +95,6 @@ mat-nav-list a {
   height: fit-content;
 }
 
-.nav-menu-scroll {
-  height: 3.5em;
-  line-height: 3.5em;
-  opacity: 0.85;
-}
-
 .spacer {
   flex: 1 1 auto;
 }

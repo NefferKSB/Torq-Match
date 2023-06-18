@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { NavbarService } from '../services/navbar.service';
 
@@ -8,6 +8,8 @@ import { NavbarService } from '../services/navbar.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+
+  isScrolled = false;
   menuOffset: number;
   isLinkDisabled: boolean;
 
