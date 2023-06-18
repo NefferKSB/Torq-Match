@@ -1,4 +1,4 @@
-<section>
+<section (window:resize)="onResize($event)">
   <div class="seperator">
     <div class="custom-shape-divider-top-1684288185">
       <div class="custom-shape-divider-top-1684544898">
@@ -39,7 +39,7 @@
             <li>Custom applications</li>
           </ul>
         </div>
-        <div class="col-sm" id="animated-gear">
+        <div class="col-sm" id="animated-gear" [style.right]="rightPosition">
           <ng-lottie
             [options]="options"
             (animationCreated)="onAnimate($event)">
