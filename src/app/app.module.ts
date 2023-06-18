@@ -60,6 +60,6 @@ export function playerFactory(): any {
     */
   ],
   providers: [NavbarService],
-  bootstrap: [AppComponent, ResponsiveService]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

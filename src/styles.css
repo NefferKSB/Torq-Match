@@ -14,5 +14,6 @@ html, body {
   --navbar-scroll: #EFEDE3;
   --navbar-scroll-text: #27291C;
   --navbar-scroll-shadow: none;
+  --navbar-button-color: #27291C;
 }
 body { margin: 0; font-family: Oswald, sans-serif; }

@@ -51,7 +51,6 @@ button {
 }
 
 button:focus {
-  background-color: #EFEDE3;
   outline: none;
 }
 
@@ -82,6 +81,10 @@ mat-sidenav {
 
 mat-nav-list a {
   color: #27291C;
+}
+
+.res-button {
+  color: var(--navbar-button-color);
 }
 
 .image-container {

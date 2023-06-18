@@ -19,7 +19,7 @@
       </div>
 
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm [disableRipple]="true">
-        <mat-icon>menu</mat-icon>
+        <mat-icon class="res-button">menu</mat-icon>
       </button>
   </mat-toolbar>
 
@@ -29,9 +29,6 @@
         <a mat-list-item (click)="scrollToElementId('about')">What we do</a>
         <a mat-list-item (click)="scrollToElementId('project')">Projects</a>
         <a mat-list-item (click)="scrollToElementId('contact')">Contact</a>
-        <a mat-list-item (click)="scrollToElementId('about')">
-          <mat-icon>home</mat-icon>Back to top
-        </a>
         <a (click)="sidenav.toggle()" mat-list-item>
           <mat-icon>close</mat-icon> Close
         </a>
