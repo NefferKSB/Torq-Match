@@ -18,7 +18,12 @@
         </ul>
       </div>
 
-      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm [disableRipple]="true">
+      <button
+        mat-icon-button (click)="sidenav.toggle()"
+        fxShow="true"
+        fxHide.gt-sm [disableRipple]="true"
+        [ngClass]="{ 'disabled-link': navbarService.isLinkDisabled }"
+      >
         <mat-icon class="res-button">menu</mat-icon>
       </button>
   </mat-toolbar>

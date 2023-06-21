@@ -49,7 +49,6 @@ export class GallaryLightboxComponent implements OnInit {
   countPaddingLeft!: string;
   countPaddingRight!: string;
 
-
   constructor(private renderer: Renderer2, public navbarService: NavbarService, private responsiveService: ResponsiveService) {
     this.isLinkDisabled = this.navbarService.isLinkDisabled;
   }

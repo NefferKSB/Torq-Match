@@ -14,6 +14,7 @@ export class AdvantagesComponent implements OnInit {
     path: '/assets/lottie/mechanics.json'
   };
 
+  marginTop!: string;
   rightPosition: string;
   screenSize: string = this.responsiveService.screenWidth;
 
@@ -37,12 +38,15 @@ export class AdvantagesComponent implements OnInit {
   setResponsiveAttrs(screenSize: string) {
     if(screenSize === 'lg') {
       this.rightPosition = "60px";
+      this.marginTop = "250px";
     }
     if(screenSize === 'md') {
       this.rightPosition = "0px";
+      this.marginTop = "250px";
     }
     if(screenSize === 'sm') {
       this.rightPosition = "0px";
+      this.marginTop = "100px";
     }
   }
 }
