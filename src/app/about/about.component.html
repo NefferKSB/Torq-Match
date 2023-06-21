@@ -1,5 +1,5 @@
-<section>
-  <div id="about" class="about_container">
+<section (window:resize)="onResize($event)">
+  <div id="about" class="about_container" [style.padding-top]="paddingTop">
     <div class="container">
       <div class="row intro_container">
         <div class="col-sm">
