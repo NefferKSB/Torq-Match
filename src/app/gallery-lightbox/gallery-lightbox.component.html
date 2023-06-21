@@ -1,12 +1,12 @@
-<div #galElement class="gallery-lightbox-container">
+<div #galElement class="gallery-lightbox-container" (window:resize)="onResize($event)">
   <div class="gallery">
     <div *ngFor="let data of galleryData; let i=index" class="gallery-img">
       <img (click)="onPreviewImage(i)" [src]="data.imageSrc" [alt]="data.imageAlt">
     </div>
   </div>
   <div *ngIf="showMask" class="lightbox" animation2>
-    <span *ngIf="showCount" class="count">{{currentIndex + 1}} / {{totalImageCount}}</span>
-    <button *ngIf="previewImage" class="close-btn" (click)="onClosePreview()">
+    <span *ngIf="showCount" class="count" [style.padding-left]="countPaddingLeft">{{currentIndex + 1}} / {{totalImageCount}}</span>
+    <button *ngIf="previewImage" class="close-btn" (click)="onClosePreview()" [style.padding-right]="countPaddingRight">
       <i class="far fa-times"></i>
     </button>
     <button *ngIf="controls" class="btn-lightbox-carousel btn-prev" (click)="prev()">

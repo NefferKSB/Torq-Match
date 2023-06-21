@@ -1,6 +1,7 @@
 import { animate, style, transition, trigger, AnimationEvent } from '@angular/animations';
 import { Component, Input, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { NavbarService } from '../services/navbar.service';
+import { ResponsiveService } from '../services/responsive-service';
 
 interface Item {
   imageSrc: string;
@@ -44,8 +45,12 @@ export class GallaryLightboxComponent implements OnInit {
   controls = true;
   totalImageCount = 0;
   isLinkDisabled: boolean;
+  screenSize: string = this.responsiveService.screenWidth;
+  countPaddingLeft!: string;
+  countPaddingRight!: string;
 
-  constructor(private renderer: Renderer2, public navbarService: NavbarService) {
+
+  constructor(private renderer: Renderer2, public navbarService: NavbarService, private responsiveService: ResponsiveService) {
     this.isLinkDisabled = this.navbarService.isLinkDisabled;
   }
 
@@ -93,5 +98,26 @@ export class GallaryLightboxComponent implements OnInit {
 
   scrollToTarget() {
       this.galElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  onResize(event: any){
+    this.responsiveService.checkWidth();
+    this.screenSize = this.responsiveService.screenWidth;
+    this.setResponsiveAttrs(this.screenSize);
+  }
+
+  setResponsiveAttrs(screenSize: string) {
+    if(screenSize === 'lg') {
+      this.countPaddingLeft = "";
+      this.countPaddingRight = "";
+    }
+    if(screenSize === 'md') {
+      this.countPaddingLeft = "";
+      this.countPaddingRight = "";
+    }
+    if(screenSize === 'sm') {
+      this.countPaddingLeft = "15px";
+      this.countPaddingRight = "15px";
+    }
   }
 }
