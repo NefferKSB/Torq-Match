@@ -2,6 +2,8 @@ import { animate, style, transition, trigger, AnimationEvent } from '@angular/an
 import { Component, Input, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { NavbarService } from '../services/navbar.service';
 import { ResponsiveService } from '../services/responsive-service';
+import * as Hammer from 'hammerjs';
+import { HammerGestureConfig } from '@angular/platform-browser';
 
 interface Item {
   imageSrc: string;
@@ -9,6 +11,11 @@ interface Item {
   imageText: string;
 }
 
+export class MyHammerConfig extends HammerGestureConfig {
+  override overrides = {
+    swipe: { direction: Hammer.DIRECTION_HORIZONTAL }
+  };
+}
 @Component({
   selector: 'app-gallery-lightbox',
   templateUrl: './gallery-lightbox.component.html',
@@ -30,8 +37,12 @@ interface Item {
         animate('50ms', style({opacity: 0.8}))
       ])
     ])
+  ],
+  providers: [
+    { provide: HammerGestureConfig, useClass: MyHammerConfig }
   ]
 })
+
 export class GallaryLightboxComponent implements OnInit {
   @Input() galleryData: Item[] = [];
   @Input() showCount = false;
@@ -49,7 +60,11 @@ export class GallaryLightboxComponent implements OnInit {
   countPaddingLeft!: string;
   countPaddingRight!: string;
 
-  constructor(private renderer: Renderer2, public navbarService: NavbarService, private responsiveService: ResponsiveService) {
+  constructor(
+    private renderer: Renderer2,
+    public navbarService: NavbarService,
+    private responsiveService: ResponsiveService)
+  {
     this.isLinkDisabled = this.navbarService.isLinkDisabled;
   }
 

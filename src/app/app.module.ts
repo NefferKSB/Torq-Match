@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,7 +20,6 @@ import { GallaryLightboxComponent } from './gallery-lightbox/gallery-lightbox.co
 import { FooterComponent } from './footer/footer.component';
 import { MatInputModule } from '@angular/material/input';
 import { NavbarService } from './services/navbar.service';
-import { ResponsiveService } from './services/responsive-service';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -48,6 +47,7 @@ export function playerFactory(): any {
     HttpClientModule,
     FlexLayoutModule,
     LayoutModule,
+    HammerModule,
     LottieModule.forRoot({ player: playerFactory })
     /*
     RouterModule.forRoot([
