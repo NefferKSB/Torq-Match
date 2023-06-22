@@ -2,8 +2,7 @@ import { animate, style, transition, trigger, AnimationEvent } from '@angular/an
 import { Component, Input, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { NavbarService } from '../services/navbar.service';
 import { ResponsiveService } from '../services/responsive-service';
-import * as Hammer from 'hammerjs';
-import { HammerGestureConfig } from '@angular/platform-browser';
+import { HammerConfigComponent } from '../hammer-config/hammer-config.component';
 
 interface Item {
   imageSrc: string;
@@ -11,11 +10,6 @@ interface Item {
   imageText: string;
 }
 
-export class MyHammerConfig extends HammerGestureConfig {
-  override overrides = {
-    swipe: { direction: Hammer.DIRECTION_HORIZONTAL }
-  };
-}
 @Component({
   selector: 'app-gallery-lightbox',
   templateUrl: './gallery-lightbox.component.html',
@@ -38,9 +32,7 @@ export class MyHammerConfig extends HammerGestureConfig {
       ])
     ])
   ],
-  providers: [
-    { provide: HammerGestureConfig, useClass: MyHammerConfig }
-  ]
+  providers: []
 })
 
 export class GallaryLightboxComponent implements OnInit {
@@ -59,6 +51,7 @@ export class GallaryLightboxComponent implements OnInit {
   screenSize: string = this.responsiveService.screenWidth;
   countPaddingLeft!: string;
   countPaddingRight!: string;
+  initialX!: number;
 
   constructor(
     private renderer: Renderer2,
@@ -66,6 +59,24 @@ export class GallaryLightboxComponent implements OnInit {
     private responsiveService: ResponsiveService)
   {
     this.isLinkDisabled = this.navbarService.isLinkDisabled;
+  }
+
+  onSwipe(event: Event) {
+    // Convert the event to a TouchEvent
+    const touchEvent = event as TouchEvent;
+    const touch = touchEvent.changedTouches[0];
+
+    if (event.type === 'touchstart') {
+      this.initialX = touch.clientX;
+    } else if (event.type === 'touchend') {
+      const deltaX = touch.clientX - this.initialX;
+
+      if (deltaX > 0) {
+        console.log('Swipe direction: Left to Right');
+      } else {
+        console.log('Swipe direction: Right to Left');
+      }
+    }
   }
 
   ngOnInit(): void {

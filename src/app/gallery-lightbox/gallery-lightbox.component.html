@@ -19,7 +19,8 @@
     <div *ngIf="previewImage"
       [@animation]="{value: 'visible'}"
       (@animation.done)="onAnimationEnd($event)"
-      class="lightbox-img">
+      class="lightbox-img"
+      (swipe)="onSwipe($event)">
       <img [src]="currentLightboxImage.imageSrc" [alt]="currentLightboxImage.imageAlt">
       <p>{{currentLightboxImage.imageText}}</p>
     </div>
