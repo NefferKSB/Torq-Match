@@ -5,9 +5,6 @@ p {
   display: block;
   text-align: center;
 }
-.hammerjs {
-  touch-action: manipulation;
-}
 .gallery-lightbox-container {
   position: relative;
   display: inline-block;
@@ -107,9 +104,32 @@ p {
   font-size: 30px;
 }
 .lightbox-img img {
+  transition: opacity 0.3s ease;
   max-height: 500px;
   max-width: 100%;
   border-radius: .35rem;
+}
+.slide-in-right {
+  animation: slideInRightAnimation 0.3s ease;
+}
+.slide-in-left {
+  animation: slideInLeftAnimation 0.3s ease;
+}
+@keyframes slideInRightAnimation {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slideInLeftAnimation {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 @media screen and (max-width: 1024px) {
   .gallery {

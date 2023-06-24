@@ -2,7 +2,6 @@ import { animate, style, transition, trigger, AnimationEvent } from '@angular/an
 import { Component, Input, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { NavbarService } from '../services/navbar.service';
 import { ResponsiveService } from '../services/responsive-service';
-import * as Hammer from 'hammerjs';
 
 interface Item {
   imageSrc: string;
@@ -92,6 +91,23 @@ export class GallaryLightboxComponent implements OnInit {
       this.currentIndex = 0;
     }
     this.currentLightboxImage = this.galleryData[this.currentIndex];
+
+    const nextImage = this.galleryData[this.currentIndex];
+
+    // Add the fade-out class to transition the current image out
+    const imageElement = document.querySelector('.lightbox-img');
+    if (imageElement) {
+      imageElement.classList.add('slide-in-right');
+
+      // Wait for the fade-out transition to complete
+      setTimeout(() => {
+        // Update the currentLightboxImage with the next image
+        this.currentLightboxImage = nextImage;
+
+        // Remove the fade-out class to fade the next image in
+        imageElement.classList.remove('slide-in-right');
+      }, 300); // Adjust the timeout duration to match the transition duration in CSS
+    }
   }
 
   prev(): void {
@@ -100,6 +116,23 @@ export class GallaryLightboxComponent implements OnInit {
       this.currentIndex = this.galleryData.length - 1;
     }
     this.currentLightboxImage = this.galleryData[this.currentIndex];
+
+    const nextImage = this.galleryData[this.currentIndex];
+
+    // Add the fade-out class to transition the current image out
+    const imageElement = document.querySelector('.lightbox-img');
+    if (imageElement) {
+      imageElement.classList.add('slide-in-left');
+
+      // Wait for the fade-out transition to complete
+      setTimeout(() => {
+        // Update the currentLightboxImage with the next image
+        this.currentLightboxImage = nextImage;
+
+        // Remove the fade-out class to fade the next image in
+        imageElement.classList.remove('slide-in-left');
+      }, 300); // Adjust the timeout duration to match the transition duration in CSS
+    }
   }
 
   scrollToTarget() {
@@ -127,13 +160,11 @@ export class GallaryLightboxComponent implements OnInit {
     }
   }
 
-  swipeLeft(data: string) {
-    this.prev();
-    console.log('Received data:', data);
-  }
-
-  swipeRight(data: string) {
-    this.next();
-    console.log('Received data:', data);
+  onSwipe(data: string) {
+    if(data == "left") {
+      this.next();
+    } else {
+      this.prev();
+    }
   }
 }

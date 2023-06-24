@@ -6,8 +6,7 @@ import * as Hammer from 'hammerjs';
 })
 export class SwipeDirective {
 
-  @Output() appSwipeLeft = new EventEmitter<string>();
-  @Output() appSwipeRight = new EventEmitter<string>();
+  @Output() appSwipe = new EventEmitter<string>();
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
@@ -19,11 +18,11 @@ export class SwipeDirective {
 
     hammer.add(swipe);
     hammer.on('swipeleft', () => {
-      this.appSwipeLeft.emit('left');
+      this.appSwipe.emit('left');
     });
 
     hammer.on('swiperight', () => {
-      this.appSwipeRight.emit('right');
+      this.appSwipe.emit('right');
     });
   }
 }
