@@ -1,5 +1,5 @@
 <div #galElement class="gallery-lightbox-container" (window:resize)="onResize($event)">
-  <div class="gallery">
+  <div class="gallery hammerjs">
     <div *ngFor="let data of galleryData; let i=index" class="gallery-img">
       <img (click)="onPreviewImage(i)" [src]="data.imageSrc" [alt]="data.imageAlt">
     </div>
@@ -20,7 +20,9 @@
       [@animation]="{value: 'visible'}"
       (@animation.done)="onAnimationEnd($event)"
       class="lightbox-img"
-      (swipe)="onSwipe($event)">
+      appSwipe
+      (appSwipeLeft)="swipeLeft($event)"
+      (appSwipeRight)="swipeRight($event)">
       <img [src]="currentLightboxImage.imageSrc" [alt]="currentLightboxImage.imageAlt">
       <p>{{currentLightboxImage.imageText}}</p>
     </div>

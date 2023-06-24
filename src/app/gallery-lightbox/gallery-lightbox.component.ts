@@ -2,14 +2,13 @@ import { animate, style, transition, trigger, AnimationEvent } from '@angular/an
 import { Component, Input, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { NavbarService } from '../services/navbar.service';
 import { ResponsiveService } from '../services/responsive-service';
-import { HammerConfigComponent } from '../hammer-config/hammer-config.component';
+import * as Hammer from 'hammerjs';
 
 interface Item {
   imageSrc: string;
   imageAlt: string;
   imageText: string;
 }
-
 @Component({
   selector: 'app-gallery-lightbox',
   templateUrl: './gallery-lightbox.component.html',
@@ -38,8 +37,8 @@ interface Item {
 export class GallaryLightboxComponent implements OnInit {
   @Input() galleryData: Item[] = [];
   @Input() showCount = false;
-  @ViewChild('galElement', { static: false, read: ElementRef})
-  galElement!: ElementRef;
+  @ViewChild('galElement', { static: false, read: ElementRef}) galElement!: ElementRef;
+  @ViewChild('swipeElement') swipeElementRef!: ElementRef;
 
   previewImage = false;
   showMask = false;
@@ -59,24 +58,6 @@ export class GallaryLightboxComponent implements OnInit {
     private responsiveService: ResponsiveService)
   {
     this.isLinkDisabled = this.navbarService.isLinkDisabled;
-  }
-
-  onSwipe(event: Event) {
-    // Convert the event to a TouchEvent
-    const touchEvent = event as TouchEvent;
-    const touch = touchEvent.changedTouches[0];
-
-    if (event.type === 'touchstart') {
-      this.initialX = touch.clientX;
-    } else if (event.type === 'touchend') {
-      const deltaX = touch.clientX - this.initialX;
-
-      if (deltaX > 0) {
-        console.log('Swipe direction: Left to Right');
-      } else {
-        console.log('Swipe direction: Right to Left');
-      }
-    }
   }
 
   ngOnInit(): void {
@@ -144,5 +125,15 @@ export class GallaryLightboxComponent implements OnInit {
       this.countPaddingLeft = "15px";
       this.countPaddingRight = "15px";
     }
+  }
+
+  swipeLeft(data: string) {
+    this.prev();
+    console.log('Received data:', data);
+  }
+
+  swipeRight(data: string) {
+    this.next();
+    console.log('Received data:', data);
   }
 }

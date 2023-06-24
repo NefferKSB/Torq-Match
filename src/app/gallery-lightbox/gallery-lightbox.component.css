@@ -5,6 +5,9 @@ p {
   display: block;
   text-align: center;
 }
+.hammerjs {
+  touch-action: manipulation;
+}
 .gallery-lightbox-container {
   position: relative;
   display: inline-block;

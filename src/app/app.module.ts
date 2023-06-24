@@ -21,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MatInputModule } from '@angular/material/input';
 import { NavbarService } from './services/navbar.service';
 import { HammerConfigComponent } from './hammer-config/hammer-config.component';
+import { SwipeDirective } from './directives/swipe.directive';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -34,7 +35,8 @@ export function playerFactory(): any {
     AboutComponent,
     AdvantagesComponent,
     GallaryLightboxComponent,
-    FooterComponent
+    FooterComponent,
+    SwipeDirective
   ],
   imports: [
     BrowserModule,
