@@ -97,7 +97,7 @@ export class GallaryLightboxComponent implements OnInit {
     // Add the fade-out class to transition the current image out
     const imageElement = document.querySelector('.lightbox-img');
     if (imageElement) {
-      imageElement.classList.add('slide-in-right');
+      imageElement.classList.add('slide-in-left');
 
       // Wait for the fade-out transition to complete
       setTimeout(() => {
@@ -105,7 +105,7 @@ export class GallaryLightboxComponent implements OnInit {
         this.currentLightboxImage = nextImage;
 
         // Remove the fade-out class to fade the next image in
-        imageElement.classList.remove('slide-in-right');
+        imageElement.classList.remove('slide-in-left');
       }, 300); // Adjust the timeout duration to match the transition duration in CSS
     }
   }
@@ -122,7 +122,7 @@ export class GallaryLightboxComponent implements OnInit {
     // Add the fade-out class to transition the current image out
     const imageElement = document.querySelector('.lightbox-img');
     if (imageElement) {
-      imageElement.classList.add('slide-in-left');
+      imageElement.classList.add('slide-in-right');
 
       // Wait for the fade-out transition to complete
       setTimeout(() => {
@@ -130,7 +130,7 @@ export class GallaryLightboxComponent implements OnInit {
         this.currentLightboxImage = nextImage;
 
         // Remove the fade-out class to fade the next image in
-        imageElement.classList.remove('slide-in-left');
+        imageElement.classList.remove('slide-in-right');
       }, 300); // Adjust the timeout duration to match the transition duration in CSS
     }
   }

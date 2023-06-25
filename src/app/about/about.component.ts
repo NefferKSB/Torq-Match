@@ -29,7 +29,7 @@ export class AboutComponent implements OnInit {
       this.paddingTop = "150px";
     }
     if(screenSize === 'sm') {
-      this.paddingTop = "75px";
+      this.paddingTop = "50px";
     }
   }
 }

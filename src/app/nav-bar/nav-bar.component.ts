@@ -24,7 +24,11 @@ export class NavBarComponent implements OnInit {
   }
 
   public scrollToElementId(elementId: string): void {
-    this.viewportScroller.setOffset([0, 115]);
+    if(elementId == "contact") {
+      this.viewportScroller.setOffset([0, 60]);
+    } else {
+      this.viewportScroller.setOffset([0, 115]);
+    }
     this.viewportScroller.scrollToAnchor(elementId);
   }
 
