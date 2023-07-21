@@ -8,4 +8,5 @@ export interface EmailData {
   assembly: string;
   application: string;
   additionalInfo: string;
+  attachment: File | null;
 }

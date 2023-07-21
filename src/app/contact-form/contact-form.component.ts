@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -19,6 +19,7 @@ export interface DialogData {}
 })
 
 export class ContactComponent implements OnInit {
+  @ViewChild('fileInput') fileInput: any;
   form!: FormGroup; //Add '!' to indicate definite assignment
 
   disabledSubmitButton: boolean = true;
@@ -26,6 +27,7 @@ export class ContactComponent implements OnInit {
   selected: string;
   width: string;
   screenSize: string = this.responsiveService.screenWidth;
+  private file: File | null = null;
 
   @HostListener('input') oninput() {
     if (this.form.valid) {
@@ -87,18 +89,6 @@ export class ContactComponent implements OnInit {
       alert("not a valid form submission!");
       return;
     }
-    /*
-    //debug alert
-    alert(`valid form submission!
-    ${this.form.value.contactName}
-    ${this.form.value.email}
-    ${this.form.value.nameplate}
-    ${this.form.value.motorInfo}
-    ${this.form.value.assembly}
-    ${this.form.value.application}
-    ${this.form.value.additionalInfo}
-    `);
-    */
 
     this.mailService.sendEmail(
       this.form.value.contactName ?? "",
@@ -107,7 +97,8 @@ export class ContactComponent implements OnInit {
       this.form.value.motorInfo ?? "",
       this.form.value.assembly ?? "",
       this.form.value.application ?? "",
-      this.form.value.additionalInfo ?? ""
+      this.form.value.additionalInfo ?? "",
+      this.file ?? null
     ).subscribe({
       next: () => {
         // Email sent successfully
@@ -120,6 +111,38 @@ export class ContactComponent implements OnInit {
         console.error('Failed to send email:', error);
       }
     });
+  }
+
+  onFileChange(event: any) {
+    if(event.target.files.length > 0) {
+      let file = event.target.files[0];
+
+      // Validate the file type
+      let validFileTypes = ['application/pdf', 'image/png', 'image/jpeg', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if(!validFileTypes.includes(file.type)) {
+        alert('Invalid file type. Please select a .pdf, .png, .jpg, .jpeg, .doc, or .docx file.');
+        this.file = null;
+        this.fileInput.nativeElement.value = '';
+        return;
+      }
+
+      this.file = file;
+
+      /*
+      // Now you can handle the file. For example, you can read it as a Blob:
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        // Here, 'reader.result' contains the file data as a data URL.
+        console.log(reader.result);
+      };
+      */
+    }
+  }
+
+  onRemoveFile() {
+    this.file = null;
+    this.fileInput.nativeElement.value = '';
   }
 }
 

@@ -83,6 +83,23 @@
         >
         </textarea>
       </mat-form-field>
+
+      <p class="attachment">
+        <input
+          type="file"
+          (change)="onFileChange($event)"
+          #fileInput
+          accept=".pdf,.png,.jpg,.jpeg,.doc,.docx"
+        >
+        <button
+          type="button"
+          color="primary"
+          (click)="onRemoveFile()"
+        >
+          Remove File
+        </button>
+      </p>
+
       <button
         class="button"
         type="submit"

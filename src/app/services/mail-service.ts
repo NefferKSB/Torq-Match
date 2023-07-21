@@ -11,11 +11,11 @@ export class MailService {
 
   constructor(private http: HttpClient) {}
 
-  sendEmail(contactName: string, email: string, nameplate: string, motorInfo: string, assembly: string, application: string, additionalInfo: string): Observable<any> {
+  sendEmail(contactName: string, email: string, nameplate: string, motorInfo: string, assembly: string, application: string, additionalInfo: string, attachment: File | null): Observable<any> {
     // Call an API endpoint or send the email using HttpClient
     // and return the Observable for the API call
     // Example using HttpClient:
-    const emailData: EmailData = {contactName: contactName, email: email, nameplate: nameplate, motorInfo: motorInfo, assembly: assembly, application: application, additionalInfo: additionalInfo};
+    const emailData: EmailData = {contactName: contactName, email: email, nameplate: nameplate, motorInfo: motorInfo, assembly: assembly, application: application, additionalInfo: additionalInfo, attachment: attachment};
     return this.http.post<any>(BACKEND_URL + '/send-email', emailData);
   }
 }
