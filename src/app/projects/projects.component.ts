@@ -20,9 +20,9 @@ export class ProjectsComponent {
       imageText: 'Santasalo® Model 1C280N Replacement on a ball mill'
     },
     {
-      imageSrc: '../assets/imgs/120buw2-s-300_sugar_facility.jpg',
+      imageSrc: '../assets/imgs/V-Class_Replacement.jpg',
       imageAlt: '2',
-      imageText: 'Falk Model 120BUW2-S-300 Replacements on a crystallizer at a Sugar Facility'
+      imageText: 'V-Class Replacement drive'
     },
     {
       imageSrc: '../assets/imgs/700mdx2-az-30.17_papermill.jpg',
@@ -30,7 +30,7 @@ export class ProjectsComponent {
       imageText: 'Falk Model 700MDX2-AZ-30.17 Replacement at a papermill'
     },
     {
-      imageSrc: '../assets/imgs/710P4N_dryer_drive.jpg',
+      imageSrc: '../assets/imgs/710P4N_dryer_drive~3_edit.jpg',
       imageAlt: '4',
       imageText: 'New 710P4N Dryer Drive at a Waste Facility'
     },
