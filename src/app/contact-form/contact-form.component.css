@@ -38,10 +38,11 @@ form {
   background-color: #8B9263;
 }
 
-.attachment {
-  text-align: center;
-}
-
-.uploadedFile:focus-visible {
-  outline: none;
+.customFileButton {
+  display: inline-block;
+  padding: 10px 20px; /* Adjust padding as needed */
+  background-color: #007bff; /* Customize button background color */
+  color: #fff; /* Customize button text color */
+  border: none; /* Remove button border */
+  cursor: pointer;
 }

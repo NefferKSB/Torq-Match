@@ -44,17 +44,17 @@ app.post('/api/send-email', upload.single('attachment'), (req, res) => {
       <p><strong>Assembly:</strong> ${assembly}</p>
       <p><strong>Application:</strong> ${application}</p>
       <p><strong>Additional Information:</strong> ${additionalInfo}</p>
-    `,
+    `
+  };
 
-    attachments: [
+  if(uploadedFile) {
+    mailOptions.attachments = [
       {
         filename: uploadedFile.originalname, // The name you want for the attachment
         path: uploadedFile.path, // Path to the file you want to attach
       },
-      // Add more attachments here if needed
-    ],
-
-  };
+    ];
+  }
 
   const createTransporter = async () => {
     const oauth2Client = new OAuth2(

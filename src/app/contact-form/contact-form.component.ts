@@ -117,6 +117,7 @@ export class ContactComponent implements OnInit {
   }
 
   onFileChange(event: any) {
+
     if(event.target.files.length > 0) {
       let file = this.fileInput.nativeElement.files[0];
 
@@ -127,6 +128,16 @@ export class ContactComponent implements OnInit {
         this.file = null;
         this.fileInput.nativeElement.value = '';
         return;
+      }
+
+      const selectedFileNameElement = document.getElementById('selectedFileName');
+
+      if(file) {
+        // Display the selected file name in the element with id "selectedFileName"
+        selectedFileNameElement!.textContent = file.name;
+      } else {
+        // If no file is selected, clear the displayed name
+        selectedFileNameElement!.textContent = '';
       }
 
       this.file = file;
