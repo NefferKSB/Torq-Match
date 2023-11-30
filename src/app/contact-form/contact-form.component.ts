@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -19,7 +19,8 @@ export interface DialogData {}
 })
 
 export class ContactComponent implements OnInit {
-  @ViewChild('fileInput') fileInput: any;
+  @ViewChild('fileInput')
+  fileInput!: ElementRef;
   form!: FormGroup; //Add '!' to indicate definite assignment
 
   disabledSubmitButton: boolean = true;
@@ -27,7 +28,7 @@ export class ContactComponent implements OnInit {
   selected: string;
   width: string;
   screenSize: string = this.responsiveService.screenWidth;
-  private file: File | null = null;
+  private file: Blob | null = null;
 
   @HostListener('input') oninput() {
     if (this.form.valid) {
@@ -98,13 +99,15 @@ export class ContactComponent implements OnInit {
       this.form.value.assembly ?? "",
       this.form.value.application ?? "",
       this.form.value.additionalInfo ?? "",
-      this.file ?? null
+      this.file ?? ""
     ).subscribe({
       next: () => {
         // Email sent successfully
         // Reset the form or show a success message
-        this.openDialog();
+        this.file = null;
+        this.fileInput.nativeElement.value = '';
         this.form.reset();
+        this.openDialog();
       },
       error: (error) => {
         // Handle error
@@ -115,7 +118,7 @@ export class ContactComponent implements OnInit {
 
   onFileChange(event: any) {
     if(event.target.files.length > 0) {
-      let file = event.target.files[0];
+      let file = this.fileInput.nativeElement.files[0];
 
       // Validate the file type
       let validFileTypes = ['application/pdf', 'image/png', 'image/jpeg', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
@@ -127,16 +130,6 @@ export class ContactComponent implements OnInit {
       }
 
       this.file = file;
-
-      /*
-      // Now you can handle the file. For example, you can read it as a Blob:
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        // Here, 'reader.result' contains the file data as a data URL.
-        console.log(reader.result);
-      };
-      */
     }
   }
 

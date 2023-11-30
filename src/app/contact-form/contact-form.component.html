@@ -4,6 +4,9 @@
     <form
       [formGroup]="form"
       (ngSubmit)="onSubmit()"
+      action="/api/send-email"
+      method="POST"
+      enctype="multipart/form-data"
     >
       <mat-form-field>
         <mat-label for="fullname">Name</mat-label>
@@ -87,10 +90,12 @@
       <p class="attachment">
         <input
           type="file"
+          class="uploadedFile"
           (change)="onFileChange($event)"
           #fileInput
           accept=".pdf,.png,.jpg,.jpeg,.doc,.docx"
         >
+        <!--
         <button
           type="button"
           color="primary"
@@ -98,6 +103,8 @@
         >
           Remove File
         </button>
+      -->
+        <i class="fa-duotone fa-square-xmark" style="--fa-primary-color: #ff0505; --fa-secondary-color: #ffffff;"></i>
       </p>
 
       <button

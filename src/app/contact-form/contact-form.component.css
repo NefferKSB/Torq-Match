@@ -41,3 +41,7 @@ form {
 .attachment {
   text-align: center;
 }
+
+.uploadedFile:focus-visible {
+  outline: none;
+}
