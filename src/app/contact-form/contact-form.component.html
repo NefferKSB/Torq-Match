@@ -87,18 +87,25 @@
         </textarea>
       </mat-form-field>
 
-      <input
-        type="file"
-        (change)="onFileChange($event)"
-        #fileInput
-        accept=".pdf,.png,.jpg,.jpeg,.doc,.docx"
-        style="display: none;"
-        id="fileInput"
-      >
-      <label for="fileInput" class="customFileButton">Choose a File</label>
-      <p id="selectedFileName"></p>
-
-      <i class="fa-duotone fa-square-xmark" style="--fa-primary-color: #ff0505; --fa-secondary-color: #ffffff;"></i>
+      <p>
+        <input
+          type="file"
+          (change)="onFileChange($event)"
+          #fileInput
+          accept=".pdf,.png,.jpg,.jpeg,.doc,.docx"
+          style="display: none;"
+          id="fileInput"
+        >
+        <label for="fileInput" class="customFileButton">Attach a File</label>
+        <span *ngIf="hasAttachment">
+          <i
+            class="fa-solid fa-xmark fa-beat remove-attachment"
+            style="color: #ff0000;"
+            (click)="onRemoveFile()"
+          ></i>
+        </span>
+        <span id="selectedFileName"></span>
+      </p>
 
       <button
         class="button"

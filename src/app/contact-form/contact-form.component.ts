@@ -27,6 +27,7 @@ export class ContactComponent implements OnInit {
   optionsSelect: Array<any> = [];
   selected: string;
   width: string;
+  hasAttachment: boolean;
   screenSize: string = this.responsiveService.screenWidth;
   private file: Blob | null = null;
 
@@ -44,6 +45,7 @@ export class ContactComponent implements OnInit {
   ) {
     this.width = '50%';
     this.selected = '';
+    this.hasAttachment = false;
   }
 
   ngOnInit() {
@@ -135,9 +137,11 @@ export class ContactComponent implements OnInit {
       if(file) {
         // Display the selected file name in the element with id "selectedFileName"
         selectedFileNameElement!.textContent = file.name;
+        this.hasAttachment = true;
       } else {
         // If no file is selected, clear the displayed name
         selectedFileNameElement!.textContent = '';
+        this.hasAttachment = false;
       }
 
       this.file = file;
@@ -145,6 +149,9 @@ export class ContactComponent implements OnInit {
   }
 
   onRemoveFile() {
+    const selectedFileNameElement = document.getElementById('selectedFileName');
+    selectedFileNameElement!.textContent = '';
+    this.hasAttachment = false;
     this.file = null;
     this.fileInput.nativeElement.value = '';
   }
