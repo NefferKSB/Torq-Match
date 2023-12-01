@@ -4,6 +4,7 @@ const multer = require("multer");
 const bodyParser = require('body-parser');
 const { google } = require("googleapis");
 const cors = require('cors');
+const fs = require('fs');
 const OAuth2 = google.auth.OAuth2;
 const express = require('express');
 const app = express();
@@ -97,8 +98,19 @@ app.post('/api/send-email', upload.single('attachment'), (req, res) => {
   };
 
   const sendEmail = async (mailOpt) => {
+    let filePath = uploadedFile.path;
     let emailTransporter = await createTransporter();
     await emailTransporter.sendMail(mailOpt);
+
+    if(uploadedFile) {
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error(`Error deleting file ${filePath}: ${err}`);
+        } else {
+          console.log(`File ${filePath} deleted successfully`);
+        }
+      });
+    }
   };
 
   // Send the email
