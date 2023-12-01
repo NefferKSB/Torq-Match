@@ -27,10 +27,10 @@
           formControlName="email"
           placeholder="Your email"
         />
+        <div *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].pristine">
+          Please enter a valid email address.
+        </div>
       </mat-form-field>
-      <div *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].pristine">
-        Please enter a valid email address.
-      </div>
 
       <mat-form-field>
         <mat-label for="Nameplate">Full Nameplate Information</mat-label>

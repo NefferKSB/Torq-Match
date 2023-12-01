@@ -105,7 +105,10 @@ export class ContactComponent implements OnInit {
     ).subscribe({
       next: () => {
         // Email sent successfully
-        // Reset the form or show a success message
+        // Reset the form and show a success message
+        const selectedFileNameElement = document.getElementById('selectedFileName');
+        selectedFileNameElement!.textContent = '';
+        this.hasAttachment = false;
         this.file = null;
         this.fileInput.nativeElement.value = '';
         this.form.reset();
